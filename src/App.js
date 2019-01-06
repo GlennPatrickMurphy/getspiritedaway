@@ -23,7 +23,7 @@ class App extends Component {
 	render() {
 		const { getInnerRef, getLocation } = this;
 		return (
-		    <div class="container">
+		    <div className="container" style={{"padding-left":"10%", "padding-right":"10%"}}>
 		         <article style={{ textAlign: "center" }}>
 		            {/* eslint-disable-next-line no-console*/}
 		                <Demo onError={error => console.log(error)} ref={getInnerRef} />
@@ -35,13 +35,13 @@ class App extends Component {
 		                    Get location
 		                </button>
 	            </article>
-		        <div class="row" >
-		          <div class="col align-self-center">
+		        <div className="row">
+		          <div className="col align-self-center">
 		            <h1>Get Spirited Away</h1>
 		          </div>
 		        </div>
-		        <div class="row">
-		          <div class="col align-self-center">
+		        <div className="row">
+		          <div className="col align-self-center">
 		           <img src={planecrop} alt="plane"></img>
 		          </div>
 	        	</div>
@@ -49,6 +49,8 @@ class App extends Component {
 					app="getspiritedaway_ver2"
 					credentials="eJHnjdtyA:8fb5aaf5-71c4-41a1-921e-c5d88ee96777">
 					<CategorySearch
+						className="btrow"
+						style={{"padding-left":"10%", "padding-right":"10%"}}
 						componentId="searchbox"
 						dataField={[
 								    'description',
@@ -59,8 +61,11 @@ class App extends Component {
 					/>
 					<ResultCard
 						componentId="result"
+						style={{"padding-left":"10%", "padding-right":"10%", "image":planecrop}}
+						size={10}
 						dataField="City.keyword"
 						pagination={true}
+						
 						react={{
 					    	and: [
 					        'searchbox'
@@ -69,7 +74,8 @@ class App extends Component {
 						onData={(res) => {
 							return {
 								title: res._id,
-								description: res.dest + " on " + res.depart_month
+								description: res.dest + " on " + res.depart_month + " at " +res.price
+								
 							}
 						}}
 					/>
