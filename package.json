@@ -1,7 +1,7 @@
 {
   "name": "getspirited",
   "version": "0.1.0",
-  "homepage":"http://glennpatrickmurphy.github.io/getspiritedaway",
+  "homepage":"http://getspiritedaway.com",
   "private": true,
   "dependencies": {
     "@appbaseio/reactivesearch": "^2.16.1",
