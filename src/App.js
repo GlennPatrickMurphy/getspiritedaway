@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ReactiveBase, CategorySearch, ResultCard } from '@appbaseio/reactivesearch';
+import { ReactiveBase, CategorySearch, ReactiveList} from '@appbaseio/reactivesearch';
 import './App.css';
 import planecrop from './img/planecrop.png';
 import Demo from "./Demo.jsx";
@@ -24,8 +24,8 @@ class App extends Component {
 		const { getInnerRef, getLocation } = this;
 		return (
 		    <div className="container" style={{"padding-left":"10%", "padding-right":"10%"}}>
-		         <article style={{ textAlign: "center" }}>
-		            {/* eslint-disable-next-line no-console*/}
+		        {/* 
+		        <article style={{ textAlign: "center" }}>
 		                <Demo onError={error => console.log(error)} ref={getInnerRef} />
 		                <button
 		                    className="pure-button pure-button-primary"
@@ -35,13 +35,14 @@ class App extends Component {
 		                    Get location
 		                </button>
 	            </article>
-		        <div className="row">
+	            */}
+		        <div className="row" style={{"margin-bottom":"-30px"}}>
 		          <div className="col align-self-center">
 		            <h1>Get Spirited Away</h1>
 		          </div>
 		        </div>
-		        <div className="row">
-		          <div className="col align-self-center">
+		        <div className="row" style={{"padding-bottom":"20px"}}>
+		          <div className="col align-self-center" >
 		           <img src={planecrop} alt="plane"></img>
 		          </div>
 	        	</div>
@@ -57,11 +58,11 @@ class App extends Component {
 								    'description.autosuggest',
 								    'description.keyword'
 								  ]}
-						placeholder="Search for Vacations"
+						placeholder="you put in your ideal vacation. we will find you the cheapest spirit flight"
 					/>
-					<ResultCard
+					<div className="col">
+					<ReactiveList
 						componentId="result"
-						style={{"padding-left":"10%", "padding-right":"10%", "image":planecrop}}
 						size={10}
 						dataField="City.keyword"
 						pagination={true}
@@ -71,20 +72,30 @@ class App extends Component {
 					        'searchbox'
 					    	]
 						}}
-						onData={(res) => {
-							return {
-								title: res._id,
-								description: res.dest + " on " + res.depart_month + " at " +res.price
-								
-							}
-						}}
+						onData={this.vacaresults}
 					/>
-	
+					</div>
 				</ReactiveBase>
 			</div>
 		);
 	}
+
+
+	vacaresults(res){
+		return(
+				<div className="flex book-content"> 
+				<div className="flex column justify-center" style={{ marginLeft: 20 }}>
+				<div className="book-header">{res.dest}</div>
+				<div className="flex column justify-space-between">
+					<div>{res.depart_month}{res.date}</div>
+				</div>
+			
+				</div>	
+				<div className="col price-header">${res.price}
+				</div>
+				</div>
+			);
+	}
+
 }
-
-
 export default App;
