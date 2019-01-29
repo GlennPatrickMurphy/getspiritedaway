@@ -1,1 +1,1 @@
-[a link](https://www.getspiritedaway.com/)
+[GetSpiritedAway.com](https://www.getspiritedaway.com/)
